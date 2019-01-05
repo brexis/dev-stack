@@ -16,7 +16,7 @@ sudo useradd -r minio-user -s /sbin/nologin
 sudo mkdir /usr/local/share/minio
 sudo mkdir /etc/minio
 
-cat <<EOT >> /etc/default/minio
+sudo cat <<EOT >> /etc/default/minio
 # Local export path.
 MINIO_VOLUMES="/usr/local/share/minio/"
 # Use if you want to run Minio on a custom port.
