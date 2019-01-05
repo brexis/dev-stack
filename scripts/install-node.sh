@@ -12,4 +12,5 @@ NVM_EXPORT="export NVM_DIR=\"\$HOME/.nvm\"\n [ -s \"\$NVM_DIR/nvm.sh\" ] && \. \
 echo -e "$NVM_EXPORT" | tee -a "$SOURCE_FILE"
 eval $NVM_EXPORT
 
-#nvm install 8
+nvm install 8
+nvm use 8
