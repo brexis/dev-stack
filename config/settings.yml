@@ -1,0 +1,4 @@
+home: "~/"
+database:
+  user: admin
+  password: secret
