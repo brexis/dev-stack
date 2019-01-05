@@ -27,7 +27,7 @@ MINIO_OPTS=\"--config-dir /etc/minio --address :9600\"
 MINIO_ACCESS_KEY=$ACCESS_KEY
 MINIO_SECRET_KEY=$SECRET_KEY
 "
-touch /etc/default/minio
+sudo touch /etc/default/minio
 sudo echo "$block" > /etc/default/minio
 
 sudo chown minio-user:minio-user /usr/local/share/minio
