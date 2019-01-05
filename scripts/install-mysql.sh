@@ -6,14 +6,14 @@ STACK_DIR="$HOME/.stack"
 ROOT_PASSWORD_PATH="$STACK_DIR/MYSQL_ROOT_PASSWORD"
 ROOT_PASSWORD=$(openssl rand -hex 8)
 
-if [-z $STACK_DIR]; then
+if [ -z $STACK_DIR ]; then
   mkdir -p $STACK_DIR
 fi
 
 echo "Create default MySql user password"
 
 touch $ROOT_PASSWORD_PATH
-echo "$MYSQL_ROOT_PASSWORD" | tee "$ROOT_PASSWORD_PATH"
+echo "$ROOT_PASSWORD" | tee "$ROOT_PASSWORD_PATH"
 
 echo "Install MySql server"
 
