@@ -12,7 +12,14 @@ touch "$HOME/.elasticsearch"
 
 # Determine version from config
 
-version=$1
+set -- "$1"
+IFS="."; declare -a version=($*)
+
+if [ -z "${version[1]}" ]; then
+  installVersion=""
+else
+  installVersion="=$1"
+fi
 
 # Install Java 8
 
@@ -24,10 +31,10 @@ sudo apt-get -y install oracle-java8-installer
 
 # Install Elasticsearch
 
-wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-"$version".deb
-wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-"$version".deb.sha512
-shasum -a 512 -c elasticsearch-"$version".deb.sha512
-sudo dpkg -i elasticsearch-"$version".deb
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+echo "deb https://artifacts.elastic.co/packages/${version[0]}.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-${version[0]}.x.list
+sudo apt-get update
+sudo apt-get -y install elasticsearch"$installVersion"
 
 # Start Elasticsearch on boot
 
