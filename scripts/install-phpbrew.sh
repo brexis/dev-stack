@@ -6,6 +6,8 @@ chmod +x phpbrew
 
 sudo mv phpbrew /usr/local/bin/phpbrew
 
+phpbrew init
+
 if [ -e "$HOME/.zshrc" ]; then
   SOURCE_FILE="$HOME/.zshrc"
 else
@@ -15,3 +17,6 @@ fi
 echo "[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc" | tee -a $SOURCE_FILE
 
 echo "Install Php 7.2 7.1 7.0 5.6"
+phpbrew install 7.2.13 +everything
+phpbrew install 7.1.25 +everything
+phpbrew install 5.6.39 +everything
