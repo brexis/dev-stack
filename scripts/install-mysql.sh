@@ -18,7 +18,7 @@ echo "$MYSQL_ROOT_PASSWORD" | tee "$ROOT_PASSWORD_PATH"
 echo "Install MySql server"
 
 sudo apt update
-sudo apt install mysql-server mysql-client libmysqlclient-dev libmysqld-dev
+sudo apt install -y mysql-server mysql-client libmysqlclient-dev libmysqld-dev
 
 # Set The Automated Root Password
 
