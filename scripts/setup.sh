@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install required package
 sudo apt install php7.0  php7.0-curl php7.0-json php7.0-cgi php7.0-fpm autoconf \
   automake libxml2-dev libcurl4-openssl-dev libssl-dev openssl gettext \

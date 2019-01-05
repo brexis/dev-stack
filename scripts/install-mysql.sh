@@ -1,6 +1,8 @@
-HOME_DIR=$1
+#!/usr/bin/env bash
+
 USERNAME=$2
 PASSWORD=$3
+HOME_DIR=$1
 STACK_DIR="$1/.stack"
 ROOT_PASSWORD_PATH="$STACK_DIR/MYSQL_ROOT_PASSWORD"
 ROOT_PASSWORD=$(openssl rand -hex 8)
