@@ -2,8 +2,7 @@
 
 USERNAME=$2
 PASSWORD=$3
-HOME_DIR=$1
-STACK_DIR="$1/.stack"
+STACK_DIR="$HOME/.stack"
 ROOT_PASSWORD_PATH="$STACK_DIR/MYSQL_ROOT_PASSWORD"
 ROOT_PASSWORD=$(openssl rand -hex 8)
 
@@ -23,13 +22,13 @@ sudo apt install mysql-server mysql-client libmysqlclient-dev libmysqld-dev
 
 # Set The Automated Root Password
 
-debconf-set-selections <<< "mysql-server mysql-server/data-dir select ''"
-debconf-set-selections <<< "mysql-server mysql-server/root_password password $ROOT_PASSWORD"
-debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $ROOT_PASSWORD"
+sudo debconf-set-selections <<< "mysql-server mysql-server/data-dir select ''"
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $ROOT_PASSWORD"
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $ROOT_PASSWORD"
 
-service mysql restart
+sudo service mysql restart
 
 mysql --user="root" --password="$ROOT_PASSWORD" -e "CREATE USER '$USERNAME'@'localhost' IDENTIFIED BY '$PASSWORD';"
 mysql --user="root" --password="$ROOT_PASSWORD" -e "GRANT ALL PRIVILEGES ON *.* TO '$USERNAME'@'localhost' WITH GRANT OPTION;"
 mysql --user="root" --password="$ROOT_PASSWORD" -e "FLUSH PRIVILEGES;"
-service mysql restart
+sudo service mysql restart
