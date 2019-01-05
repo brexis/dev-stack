@@ -41,3 +41,4 @@ sudo sed -i "s/#cluster.name: my-application/cluster.name: homestead/" /etc/elas
 
 sudo systemctl enable elasticsearch.service
 sudo service elasticsearch start
+rm elasticsearch-"$VERSION".deb.sha512 elasticsearch-"$VERSION".deb
