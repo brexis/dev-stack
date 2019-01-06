@@ -19,6 +19,13 @@ class Stack
 
   def self.configure(config)
     cmd = TTY::Command.new
+    # Install php
+    if config['php']
+      config['php'].each do |version|
+        cmd.run('scripts/install-php.sh', version)
+      end
+    end
+
     # Create mysql databases
     if config['mysql'].key?('databases')
       config['mysql']['databases'].each do |db|
