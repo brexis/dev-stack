@@ -6,9 +6,8 @@ chmod +x phpbrew
 
 sudo mv phpbrew /usr/local/bin/phpbrew
 
+# Init phpbrew
 phpbrew init
-
-echo "[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc" | tee -a "$HOME/.bashrc"
 [[ -e "$HOME/.phpbrew/bashrc" ]] && source "$HOME/.phpbrew/bashrc"
 
 echo "Install Php 7.2 7.1 7.0 5.6"
