@@ -1,6 +1,6 @@
 USER=$(whoami)
 
-[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+[[ -e ~/.phpbrew/bashrc ]] && /bin/bash $HOME/.phpbrew/bashrc
 
 sudo apt install -y nginx
 sudo rm /etc/nginx/sites-enabled/default
