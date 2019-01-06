@@ -71,11 +71,11 @@ then
         C  = UN
         CN = Homestead $(hostname) Root CA
     "
-    echo "$cnf" > $PATH_ROOT_CNF
+    echo "$cnf" | sudo tee $PATH_ROOT_CNF
 
     # Finally, generate the private key and certificate.
-    openssl genrsa -out "$PATH_ROOT_KEY" 4096 2>/dev/null
-    openssl req -config "$PATH_ROOT_CNF" \
+    sudo openssl genrsa -out "$PATH_ROOT_KEY" 4096 2>/dev/null
+    sudo openssl req -config "$PATH_ROOT_CNF" \
         -key "$PATH_ROOT_KEY" \
         -x509 -new -extensions v3_ca -days 3650 -sha256 \
         -out "$PATH_ROOT_CRT" 2>/dev/null
@@ -98,14 +98,14 @@ then
         DNS.1 = $1
         DNS.2 = *.$1
     "
-    echo "$cnf" > $PATH_CNF
+    echo "$cnf" | sudo tee $PATH_CNF
 
     # Finally, generate the private key and certificate signed with the Homestead $(hostname) Root CA.
-    openssl genrsa -out "$PATH_KEY" 2048 2>/dev/null
-    openssl req -config "$PATH_CNF" \
+    sudo openssl genrsa -out "$PATH_KEY" 2048 2>/dev/null
+    sudo openssl req -config "$PATH_CNF" \
         -key "$PATH_KEY" \
         -new -sha256 -out "$PATH_CSR" 2>/dev/null
-    openssl x509 -req -extfile "$PATH_CNF" \
+    sudo openssl x509 -req -extfile "$PATH_CNF" \
         -extensions server_cert -days 365 -sha256 \
         -in "$PATH_CSR" \
         -CA "$PATH_ROOT_CRT" -CAkey "$PATH_ROOT_KEY" -CAcreateserial \
