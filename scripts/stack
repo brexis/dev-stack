@@ -26,14 +26,14 @@ class Stack
 
   def self.configure(config)
     # Create mysql databases
-    if config['mysql'].has_key('databases')
+    if config['mysql'].key?('databases')
       config['mysql']['databases'].each do |db|
         exec('./create-mysql-database.sh', db, config['mysql']['user'], config['mysql']['password'])
       end
     end
 
     # Create postgresql databases
-    if config['postgresql'].has_key('databases')
+    if config['postgresql'].key?('databases')
       config['postgresql']['databases'].each do |db|
         exec('./create-mysql-database.sh', db, config['postgresql']['user'], config['postgresql']['password'])
       end
