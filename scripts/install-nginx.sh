@@ -1,10 +1,10 @@
 USER=$(whoami)
 
 sudo apt install -y nginx
-rm /etc/nginx/sites-enabled/default
-rm /etc/nginx/sites-available/default
+sudo rm /etc/nginx/sites-enabled/default
+sudo rm /etc/nginx/sites-available/default
 
-sed -i "s/user www-data;/user $USER;/" /etc/nginx/nginx.conf
+sudo sed -i "s/user www-data;/user $USER;/" /etc/nginx/nginx.conf
 
 # Configure PHP 7.2.13 fpm
 if [ -e $HOME/.phpbrew/php/php-7.2.13/etc/php-fpm.d/www.conf ]
@@ -51,9 +51,9 @@ then
   /bin/zsh -i -c "phpbrew fpm start"
 fi
 
-service nginx restart
+sudo service nginx restart
 
 # Add User To WWW-Data
-usermod -a -G www-data $USER
+sudo usermod -a -G www-data $USER
 id $USER
 groups $USER
