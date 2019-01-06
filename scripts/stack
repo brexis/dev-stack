@@ -4,38 +4,35 @@ require 'yaml'
 
 class Stack
   def self.setup(config)
-    # Install Mysql
-    _x('./install-mysql.sh', config['mysql']['user'], config['mysql']['password'])
-    # Install Posgresql
-    _x('./install-postgresql.sh', config['postgresql']['user'], config['postgresql']['password'])
-    # Install Oh My Zsh
-    _x('./install-oh-my-zsh.sh')
-    # Install php
-    _x('./install-php.sh')
-    # Install node
-    _x('./install-node.sh')
-    # Install nginx
-    _x('./install-nginx.sh')
-    # Install elasticsearch
-    _x('./install-elasticsearch.sh', config['elasticsearch'])
-    # Install minio
-    _x('./install-minio.sh', config['minio']['access_key'], config['minio']['secret_key'])
-    # Install cloud9
-    _x('./install-cloud9.sh', config['cloud9']['access_key'], config['cloud9']['password'])
+    %x(
+      #{_x('./install-mysql.sh')} #{config['mysql']['user']} #{config['mysql']['password']}
+      #{_x('./install-postgresql.sh')} #{config['postgresql']['user']} #{config['postgresql']['password']}
+      #{_x('./install-oh-my-zsh.sh')}
+      #{_x('./install-php.sh')}
+      #{_x('./install-node.sh')}
+      #{_x('./install-nginx.sh')}
+      #{_x('./install-elasticsearch.sh')} #{config['elasticsearch']}
+      #{_x('./install-minio.sh')} #{config['minio']['access_key']} #{config['minio']['secret_key']}
+      #{_x('./install-cloud9.sh')} #{config['cloud9']['access_key']} #{config['cloud9']['password']}
+    )
   end
 
   def self.configure(config)
     # Create mysql databases
     if config['mysql'].key?('databases')
       config['mysql']['databases'].each do |db|
-        _x('./create-mysql-database.sh', db, config['mysql']['user'], config['mysql']['password'])
+        %x(
+          #{_x('./create-mysql-database.sh')} #{db} #{config['mysql']['user']} #{config['mysql']['password']}
+        )
       end
     end
 
     # Create postgresql databases
     if config['postgresql'].key?('databases')
       config['postgresql']['databases'].each do |db|
-        _x('./create-postgresql-database.sh', db, config['postgresql']['user'], config['postgresql']['password'])
+        %x(
+          #{_x('./create-postgresql-database.sh')} #{db} #{config['postgresql']['user']} #{config['postgresql']['password']}
+        )
       end
     end
 
@@ -43,17 +40,16 @@ class Stack
       host = site['map']
       dir = site['to']
       php = site.fetch('php') { '' }
-      _x('./create-certificate.sh', host)
-      _x('./serve-laravel.sh', host, dir, php)
+
+      %x(
+        #{_x('./create-certificate.sh')} #{host}
+        #{_x('./serve-laravel.sh')} #{host} #{dir} #{php}
+      )
     end
   end
 
-  def self.script_path(path)
+  def self._x(path)
     File.expand_path("../#{path}", __FILE__)
-  end
-
-  def self._x(path, *args)
-    exec(script_path(path), *args)
   end
 end
 
