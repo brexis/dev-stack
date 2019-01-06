@@ -31,8 +31,8 @@ bundle install
 
 # Creating settings file
 echo "Creating settings file"
-cp $STACK_HOME/config/settings.yml.sample $STACK_HOME/config.settings.yml
+cp $STACK_HOME/config/settings.yml.sample $STACK_HOME/config/settings.yml
 
 echo "Add this to .bashrc"
-echo "export STACK_HOME=$HOME/.stack"
-echo "export PATH=$STACK_HOME/bin:$PATH"
+echo "export STACK_HOME=\$HOME/.stack"
+echo "export PATH=\$STACK_HOME/bin:\$PATH"
