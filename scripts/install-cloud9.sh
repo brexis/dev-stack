@@ -4,6 +4,10 @@ PASSWORD=$2
 INSTALL_DIR="$HOME/ide"
 WORKSPACE_DIR="$HOME/code"
 
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 if [ ! -d "$WORKSPACE_DIR" ]
 then
   mkdir $WORKSPACE_DIR
