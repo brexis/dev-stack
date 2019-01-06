@@ -22,9 +22,11 @@ WORKSPACE_DIR="$HOME/code"
 # /bin/bash scripts/install-sdk.sh
 
 # Add supervisor task
+NODE_VERSION=$(/bin/zsh -i -c "nvm version default")
+
 block="
 [program:cloud9]
-command=node $INSTALL_DIR/server.js --listen $HOST --port 80 -w $WORKSPACE_DIR -a $USERNAME:$PASSWORD
+command=$HOME/.nvm/versions/node/$NODE_VERSION/bin/node $INSTALL_DIR/server.js --listen $HOST --port 80 -w $WORKSPACE_DIR -a $USERNAME:$PASSWORD
 user=$USER
 autostart=true
 autorestart=true
