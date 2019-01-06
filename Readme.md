@@ -1,11 +1,30 @@
 ## Requirements
-See [Install](Install) file.
+See [Requirements](Requirements) file.
 
-## Step 1
-`./scripts/setup.sh`
+## Intalll
+With Curl
+```
+curl -o- https://raw.githubusercontent.com/brexis/dev-stack/master/install.sh | bash
+```
 
-## Step 1
-`./scripts/stack setup`
+Or Wget
 
-## Step 2
-`./scripts/stack configure`
+```
+curl -o- https://raw.githubusercontent.com/brexis/dev-stack/master/install.sh | bash
+```
+
+## Configuration
+Update the settings file
+```
+nano ~/.stack/config/settings.yml
+```
+
+## Setup environments
+```
+stack setup
+```
+
+## Confifures
+```
+stack configure
+```
