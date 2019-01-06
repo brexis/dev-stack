@@ -85,7 +85,7 @@ fi
 if [ ! -f $PATH_CNF ] || [ ! -f $PATH_KEY ] || [ ! -f $PATH_CRT ]
 then
     # Uncomment the global 'copy_extentions' OpenSSL option to ensure the SANs are copied into the certificate.
-    sed -i '/copy_extensions\ =\ copy/s/^#\ //g' /etc/ssl/openssl.cnf
+    sudo sed -i '/copy_extensions\ =\ copy/s/^#\ //g' /etc/ssl/openssl.cnf
 
     # Generate an OpenSSL configuration file specifically for this certificate.
     cnf="
