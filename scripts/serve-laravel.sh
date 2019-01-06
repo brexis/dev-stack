@@ -40,3 +40,6 @@ block="server {
 echo "$block" | sudo tee "/etc/nginx/sites-available/$1"
 sudo ln -fs "/etc/nginx/sites-available/$1" "/etc/nginx/sites-enabled/$1"
 grep -q -x -F "127.0.0.1 $1" /etc/hosts || echo "127.0.0.1 $1" | sudo tee -a /etc/hosts
+sudo service nginx restart
+phpbrew fpm stop
+phpbrew fpm start
