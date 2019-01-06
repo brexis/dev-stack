@@ -32,7 +32,7 @@ stdout_logfile=/var/log/supervisor/cloud9.log
 stderr_logfile=/var/log/supervisor/cloud9_errors.log
 environment=NODE_ENV=\"production\",HOME="$WORKSPACE_DIR"
 "
-echo "$BLOCK" | sudo tee /etc/supervisor/conf.d/cloud9.conf
+echo "$block" | sudo tee /etc/supervisor/conf.d/cloud9.conf
 
 sudo supervisorctl reread
 sudo supervisorctl update
