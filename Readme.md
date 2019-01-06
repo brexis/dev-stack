@@ -1,7 +1,7 @@
 ## Requirements
 See [Requirements](Requirements) file.
 
-## Intall
+## Intallation
 With Curl
 ```
 curl -o- https://raw.githubusercontent.com/brexis/dev-stack/master/install.sh | bash
