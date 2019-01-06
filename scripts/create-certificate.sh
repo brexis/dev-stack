@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir /etc/nginx/ssl 2>/dev/null
+sudo mkdir /etc/nginx/ssl 2>/dev/null
 
 PATH_SSL="/etc/nginx/ssl"
 
