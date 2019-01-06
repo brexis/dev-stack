@@ -2,7 +2,6 @@
 HOST=$1
 USERNAME=$2
 PASSWORD=$3
-USER=$(whoami)
 INSTALL_DIR="$HOME/ide"
 WORKSPACE_DIR="$HOME/code"
 
@@ -30,7 +29,7 @@ NODE_VERSION=$(/bin/zsh -i -c "nvm version default")
 block="
 [program:cloud9]
 command=$HOME/.nvm/versions/node/$NODE_VERSION/bin/node $INSTALL_DIR/server.js --listen $HOST --port 80 -w $WORKSPACE_DIR -a $USERNAME:$PASSWORD
-user=$USER
+user=root
 autostart=true
 autorestart=true
 stdout_logfile=/var/log/supervisor/cloud9.log
