@@ -14,7 +14,7 @@ class Stack
     cmd.run('scripts/install-elasticsearch.sh', config['elasticsearch'])
     cmd.run('scripts/install-minio.sh', config['minio']['access_key'], config['minio']['secret_key'])
     cmd.run('scripts/install-cloud9.sh', config['cloud9']['access_key'], config['cloud9']['password'])
-    cmd.run('scripts/install--oh-my-zsh.sh')
+    cmd.run('scripts/install-oh-my-zsh.sh')
   end
 
   def self.configure(config)
