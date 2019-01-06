@@ -8,31 +8,28 @@ class Stack
     cmd = TTY::Command.new
     cmd.run('scripts/install-mysql.sh', config['mysql']['user'], config['mysql']['password'])
     cmd.run('scripts/install-postgresql.sh', config['postgresql']['user'], config['postgresql']['password'])
-    cmd.run('scripts/install-php.sh')
+    cmd.run('scripts/install-phpbrew.sh')
     cmd.run('scripts/install-node.sh')
     cmd.run('scripts/install-nginx.sh')
     cmd.run('scripts/install-elasticsearch.sh', config['elasticsearch'])
     cmd.run('scripts/install-minio.sh', config['minio']['access_key'], config['minio']['secret_key'])
     cmd.run('scripts/install-cloud9.sh', config['cloud9']['access_key'], config['cloud9']['password'])
-    cmd.run('scripts/install--oh-my-zsh.sh.sh')
+    cmd.run('scripts/install--oh-my-zsh.sh')
   end
 
   def self.configure(config)
+    cmd = TTY::Command.new
     # Create mysql databases
     if config['mysql'].key?('databases')
       config['mysql']['databases'].each do |db|
-        %x(
-          #{_x('./create-mysql-database.sh')} #{db} #{config['mysql']['user']} #{config['mysql']['password']}
-        )
+        cmd.run('scripts/create-mysql-database.sh', db, config['mysql']['user'], config['mysql']['password'])
       end
     end
 
     # Create postgresql databases
     if config['postgresql'].key?('databases')
       config['postgresql']['databases'].each do |db|
-        %x(
-          #{_x('./create-postgresql-database.sh')} #{db} #{config['postgresql']['user']} #{config['postgresql']['password']}
-        )
+        cmd.run('scripts/create-postgresql-database.sh', db, config['postgresql']['user'], config['postgresql']['password'])
       end
     end
 
@@ -41,10 +38,8 @@ class Stack
       dir = site['to']
       php = site.fetch('php') { '' }
 
-      %x(
-        #{_x('./create-certificate.sh')} #{host}
-        #{_x('./serve-laravel.sh')} #{host} #{dir} #{php}
-      )
+      cmd.run('scripts/create-certificate.sh', host)
+      cmd.run('scripts/serve-laravel.sh', host, dir, php)
     end
   end
 

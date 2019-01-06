@@ -20,9 +20,12 @@ cloud9:
   username: homestead
   password: secret
 
+php:
+  - 7.2.13
+
 sites:
   - map: auth.globalhotspot.local
     to: /home/vagrant/code/auth
   - map: sahelservices.local
     to: /home/brexis/code/sahelservices
-    php: "7.1.25"
+    php: "7.2.13"
