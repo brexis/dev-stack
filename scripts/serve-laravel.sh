@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+PHP_VERION=${3:-7.2.13}
+
 block="server {
     listen 80;
     listen 443 ssl http2;
@@ -18,7 +20,7 @@ block="server {
     client_max_body_size 100m;
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/home/brexis/.phpbrew/php/php-${3:-7.1.25}/var/run/php-fpm.sock;
+        fastcgi_pass unix:/home/brexis/.phpbrew/php/php-$PHP_VERION/var/run/php-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
@@ -41,5 +43,6 @@ echo "$block" | sudo tee "/etc/nginx/sites-available/$1"
 sudo ln -fs "/etc/nginx/sites-available/$1" "/etc/nginx/sites-enabled/$1"
 grep -q -x -F "127.0.0.1 $1" /etc/hosts || echo "127.0.0.1 $1" | sudo tee -a /etc/hosts
 sudo service nginx restart
+phpbrew use $PHP_VERION
 phpbrew fpm stop
 phpbrew fpm start
