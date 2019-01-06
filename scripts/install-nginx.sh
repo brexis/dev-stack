@@ -16,9 +16,9 @@ then
   sed -i "s/;listen\.group.*/listen.group = $USER/" $HOME/.phpbrew/php/php-7.2.13/etc/php-fpm.d/www.conf
   sed -i "s/;listen\.mode.*/listen.mode = 0666/" $HOME/.phpbrew/php/php-7.2.13/etc/php-fpm.d/www.conf
 
-  /bin/zsh -i -c "phpbrew use 7.2.13"
-  /bin/zsh -i -c "phpbrew fpm stop"
-  /bin/zsh -i -c "phpbrew fpm start"
+  phpbrew use 7.2.13
+  phpbrew fpm stop
+  phpbrew fpm start
 fi
 
 # Configure PHP 7.1.25 fpm
@@ -31,9 +31,9 @@ then
   sed -i "s/;listen\.group.*/listen.group = $USER/" $HOME/.phpbrew/php/php-7.1.25/etc/php-fpm.d/www.conf
   sed -i "s/;listen\.mode.*/listen.mode = 0666/" $HOME/.phpbrew/php/php-7.1.25/etc/php-fpm.d/www.conf
 
-  /bin/zsh -i -c "phpbrew use 7.1.25"
-  /bin/zsh -i -c "phpbrew fpm stop"
-  /bin/zsh -i -c "phpbrew fpm start"
+  phpbrew use 7.1.25
+  phpbrew fpm stop
+  phpbrew fpm start
 fi
 
 # Configure PHP 5.6.39 fpm
@@ -46,9 +46,9 @@ then
   sed -i "s/;listen\.group.*/listen.group = $USER/" $HOME/.phpbrew/php/php-5.6.39/etc/php-fpm.d/www.conf
   sed -i "s/;listen\.mode.*/listen.mode = 0666/" $HOME/.phpbrew/php/php-5.6.39/etc/php-fpm.d/www.conf
 
-  /bin/zsh -i -c "phpbrew use 5.6.39"
-  /bin/zsh -i -c "phpbrew fpm stop"
-  /bin/zsh -i -c "phpbrew fpm start"
+  phpbrew use 5.6.39
+  phpbrew fpm stop
+  phpbrew fpm start
 fi
 
 sudo service nginx restart

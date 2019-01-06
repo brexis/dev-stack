@@ -20,7 +20,7 @@ cd $INSTALL_DIR
 /bin/bash scripts/install-sdk.sh
 
 # Add supervisor task
-NODE_VERSION=$(/bin/zsh -i -c "nvm version default")
+NODE_VERSION=$(nvm version default)
 
 block="
 [program:cloud9]
