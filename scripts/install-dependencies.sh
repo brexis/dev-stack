@@ -8,5 +8,3 @@ sudo apt install -y php7.0  php7.0-curl php7.0-json php7.0-cgi php7.0-fpm autoco
   build-essential libmhash-dev libmhash2 libxslt1-dev libpng-dev libpq-dev \
   apt-transport-https python-software-properties python make g++ curl \
   apache2-utils git supervisor
-
-/bin/bash scripts/install-ruby.sh

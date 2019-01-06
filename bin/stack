@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'tty-command'
+
+module Stack
+  class << self
+    @cmd = nil
+
+    def cmd
+      @cmd ||= TTY::Command.new
+    end
+
+    def setup(config)
+      run('install-mysql.sh', config['mysql']['user'], config['mysql']['password'])
+      run('install-postgresql.sh', config['postgresql']['user'], config['postgresql']['password'])
+      run('install-phpbrew.sh')
+      run('install-node.sh')
+      run('install-nginx.sh')
+      run('install-elasticsearch.sh', config['elasticsearch'])
+      run('install-minio.sh', config['minio']['access_key'], config['minio']['secret_key'])
+      run('install-cloud9.sh', config['cloud9']['access_key'], config['cloud9']['password'])
+      run('install-oh-my-zsh.sh')
+    end
+
+    def configure(config)
+      # Install php
+      config['php'].each do |version|
+        run('install-php.sh', version)
+      end
+
+      # Create mysql databases
+      if config['mysql'].key?('databases')
+        config['mysql']['databases'].each do |db|
+          run('create-mysql-database.sh', db, config['mysql']['user'], config['mysql']['password'])
+        end
+      end
+
+      # Create postgresql databases
+      if config['postgresql'].key?('databases')
+        config['postgresql']['databases'].each do |db|
+          run('create-postgresql-database.sh', db, config['postgresql']['user'], config['postgresql']['password'])
+        end
+      end
+
+      config['sites'].each do |site|
+        host = site['map']
+        dir = site['to']
+        php = site.fetch('php') { '' }
+
+        run('create-certificate.sh', host)
+        run('serve-laravel.sh', host, dir, php)
+      end
+    end
+
+    def script_path(script)
+      unless ENV.key?('STACK_HOME')
+        raise 'No STACK_HOME provided. Plase'
+      end
+
+      "#{ENV['STACK_HOME']}/scripts/#{script}"
+    end
+
+    def run(script, *args)
+      path = script_path(script)
+      cmd.run(path, *args)
+    end
+  end
+end
+
+def read_config
+  path = File.expand_path('../../config/settings.yml', __FILE__)
+  YAML.load_file(path)
+end
+
+args = ARGV
+action = args.delete_at(0)
+
+Stack.send(action.to_sym, read_config, *args)
