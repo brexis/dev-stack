@@ -24,8 +24,6 @@ php:
   - 7.2.13
 
 sites:
-  - map: auth.globalhotspot.local
-    to: /home/vagrant/code/auth
-  - map: sahelservices.local
-    to: /home/brexis/code/sahelservices
+  - map: homestead.io
+    to: /home/brexis/code/homestead
     php: "7.2.13"
