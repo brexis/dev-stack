@@ -52,7 +52,7 @@ class Stack
     File.expand_path("../#{path}", __FILE__)
   end
 
-  def _x(path, *args)
+  def self._x(path, *args)
     exec(script_path(path), *args)
   end
 end
