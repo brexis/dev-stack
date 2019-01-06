@@ -10,7 +10,7 @@ curl -o- https://raw.githubusercontent.com/brexis/dev-stack/master/install.sh | 
 Or Wget
 
 ```
-curl -o- https://raw.githubusercontent.com/brexis/dev-stack/master/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/brexis/dev-stack/master/install.sh | bash
 ```
 
 ## Configuration
