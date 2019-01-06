@@ -1,0 +1,60 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+
+class Stack
+  def self.setup(config)
+    # Install Mysql
+    exec('./install-mysql.sh', config['mysql']['user'], config['mysql']['password'])
+    # Install Posgresql
+    exec('./install-postgresql.sh', config['postgresql']['user'], config['postgresql']['password'])
+    # Install Oh My Zsh
+    exec('./install-oh-my-zsh.sh')
+    # Install php
+    exec('./install-php.sh')
+    # Install node
+    exec('./install-node.sh')
+    # Install nginx
+    exec('./install-nginx.sh')
+    # Install elasticsearch
+    exec('./install-elasticsearch.sh', config['elasticsearch'])
+    # Install minio
+    exec('./install-minio.sh', config['minio']['access_key'], config['minio']['secret_key'])
+    # Install cloud9
+    exec('./install-cloud9.sh', config['cloud9']['access_key'], config['cloud9']['password'])
+  end
+
+  def self.configure(config)
+    # Create mysql databases
+    if config['mysql'].has_key('databases')
+      config['mysql']['databases'].each do |db|
+        exec('./create-mysql-database.sh', db, config['mysql']['user'], config['mysql']['password'])
+      end
+    end
+
+    # Create postgresql databases
+    if config['postgresql'].has_key('databases')
+      config['postgresql']['databases'].each do |db|
+        exec('./create-mysql-database.sh', db, config['postgresql']['user'], config['postgresql']['password'])
+      end
+    end
+
+    config['sites'].each do |site|
+      host = site['map']
+      dir = site['to']
+      php = site.fetch('php') { '' }
+      exec('./create-certificate.sh', host)
+      exec('./serve-laravel.sh', host, dir, php)
+    end
+  end
+end
+
+def self.read_config
+  path = File.expand_path('../../config/settings.yml', __FILE__)
+  YAML.load_file(path)
+end
+
+args = ARGV
+action = args.delete_at(0)
+
+Stack.send(action.to_sym, read_config, *args)

@@ -1,4 +1,28 @@
-home: "~/"
-database:
+mysql:
   user: admin
   password: secret
+  databases:
+    - homestead
+
+postgresql:
+  user: admin
+  password: secret
+  databases:
+    - homestead
+
+elasticsearch: 6.5.4
+
+minio:
+  access_key: homestead
+  secret_key: secret123
+
+cloud9:
+  username: homestead
+  password: secret
+
+sites:
+  - map: auth.globalhotspot.local
+    to: /home/vagrant/code/auth
+  - map: sahelservices.local
+    to: /home/brexis/code/sahelservices
+    php: "7.1.25"
