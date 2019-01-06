@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PHP_VERION=${3:-7.2.13}
+PHP_VERSION=${3:-7.2.13}
 
 block="server {
     listen 80;
@@ -43,6 +43,6 @@ echo "$block" | sudo tee "/etc/nginx/sites-available/$1"
 sudo ln -fs "/etc/nginx/sites-available/$1" "/etc/nginx/sites-enabled/$1"
 grep -q -x -F "127.0.0.1 $1" /etc/hosts || echo "127.0.0.1 $1" | sudo tee -a /etc/hosts
 sudo service nginx restart
-phpbrew use $PHP_VERION
-phpbrew fpm stop
-phpbrew fpm start
+/bin/zsh -i -c "phpbrew use $PHP_VERSION"
+/bin/zsh -i -c "phpbrew fpm stop"
+/bin/zsh -i -c "phpbrew fpm start"
