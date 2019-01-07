@@ -24,6 +24,9 @@ module Stack
     end
 
     def configure(config)
+      # Clear nginx sites
+      run('clear-nginx.sh')
+
       # Install php
       config['php'].each do |version|
         run('install-php.sh', version)
