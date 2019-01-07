@@ -19,7 +19,7 @@ module Stack
       run('install-nginx.sh')
       run('install-elasticsearch.sh', config['elasticsearch'])
       run('install-minio.sh', config['minio']['access_key'], config['minio']['secret_key'])
-      run('install-cloud9.sh', config['cloud9']['access_key'], config['cloud9']['password'])
+      run('install-cloud9.sh', config['cloud9']['username'], config['cloud9']['password'])
       run('install-oh-my-zsh.sh')
     end
 
