@@ -22,6 +22,8 @@ fi
 git clone https://github.com/c9/core.git $INSTALL_DIR
 cd $INSTALL_DIR
 /bin/bash scripts/install-sdk.sh
+cd $HOME
+curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
 
 # Add supervisor task
 NODE_VERSION=$(nvm version default)
@@ -34,7 +36,7 @@ autostart=true
 autorestart=true
 stdout_logfile=/var/log/supervisor/cloud9.log
 stderr_logfile=/var/log/supervisor/cloud9_errors.log
-environment=NODE_ENV=\"production\",HOME="$WORKSPACE_DIR"
+environment=NODE_ENV=\"production\",HOME="$HOME"
 "
 echo "$block" | sudo tee /etc/supervisor/conf.d/cloud9.conf
 
