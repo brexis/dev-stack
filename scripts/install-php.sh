@@ -12,8 +12,17 @@ then
 fi
 
 echo "Installing Php $1"
-phpbrew install $1 +default +dbs +fpm +gd
+phpbrew install $1 +default +dbs +fpm
 phpbrew use $1
+phpbrew ext install gd -- \
+ --enable-gd-native-ttf \
+ --with-gd=shared \
+ --with-freetype-dir=/usr/include/freetype2/freetype \
+ --with-jpeg-dir=/usr \
+ --with-libdir=lib/x86_64-linux-gnu \
+ --with-png-dir=/usr \
+ --with-vpx-dir=/usr \
+ --with-xpm-dir=/usr
 
 echo "Configure PHP $1 fpm"
 sed -i "s/user = nobody/user = $USER/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf

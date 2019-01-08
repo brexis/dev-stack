@@ -22,6 +22,8 @@ fi
 git clone https://github.com/c9/core.git $INSTALL_DIR
 cd $INSTALL_DIR
 /bin/bash scripts/install-sdk.sh
+cd $HOME
+curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
 
 # Add supervisor task
 NODE_VERSION=$(nvm version default)
@@ -34,10 +36,25 @@ autostart=true
 autorestart=true
 stdout_logfile=/var/log/supervisor/cloud9.log
 stderr_logfile=/var/log/supervisor/cloud9_errors.log
-environment=NODE_ENV=\"production\",HOME="$WORKSPACE_DIR"
+environment=NODE_ENV=\"production\",HOME=\"$HOME\"
 "
 echo "$block" | sudo tee /etc/supervisor/conf.d/cloud9.conf
 
+# Install ide language.codeintel
+sudo pip install -U virtualenv
+virtualenv --python=python2 $HOME/.c9/python2
+source $HOME/.c9/python2/bin/activate
+
+mkdir /tmp/codeintel
+pip download -d /tmp/codeintel codeintel==0.9.3
+
+cd /tmp/codeintel
+tar xf CodeIntel-0.9.3.tar.gz
+mv CodeIntel-0.9.3/SilverCity CodeIntel-0.9.3/silvercity
+tar czf CodeIntel-0.9.3.tar.gz CodeIntel-0.9.3
+pip install -U --no-index --find-links=/tmp/codeintel codeintel
+
+# Restart process
 sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl start cloud9:*

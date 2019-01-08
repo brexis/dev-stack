@@ -9,3 +9,6 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install 8
 nvm use 8
+
+# Install Yarn
+curl -o- -L https://yarnpkg.com/install.sh | bash
