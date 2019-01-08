@@ -40,6 +40,21 @@ environment=NODE_ENV=\"production\",HOME=\"$HOME\"
 "
 echo "$block" | sudo tee /etc/supervisor/conf.d/cloud9.conf
 
+# Install ide language.codeintel
+sudo pip install -U virtualenv
+virtualenv --python=python2 $HOME/.c9/python2
+source $HOME/.c9/python2/bin/activate
+
+mkdir /tmp/codeintel
+pip download -d /tmp/codeintel codeintel==0.9.3
+
+cd /tmp/codeintel
+tar xf CodeIntel-0.9.3.tar.gz
+mv CodeIntel-0.9.3/SilverCity CodeIntel-0.9.3/silvercity
+tar czf CodeIntel-0.9.3.tar.gz CodeIntel-0.9.3
+pip install -U --no-index --find-links=/tmp/codeintel codeintel
+
+# Restart process
 sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl start cloud9:*
