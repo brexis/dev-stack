@@ -20,6 +20,7 @@ module Stack
       run('install-elasticsearch.sh', config['elasticsearch'])
       run('install-minio.sh', config['minio']['access_key'], config['minio']['secret_key'])
       run('install-cloud9.sh', config['cloud9']['username'], config['cloud9']['password'])
+      run('install-mailhog.sh')
       run('install-oh-my-zsh.sh')
     end
 
