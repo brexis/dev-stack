@@ -35,3 +35,22 @@ stack setup
 ```
 stack configure
 ```
+
+## Services
+### Elasticsearch
+```
+sudo service elasticsearch start
+sudo service elasticsearch stop
+```
+
+### Minio
+```
+sudo service minio start
+sudo service minio stop
+```
+
+### Mailhog
+```
+sudo service mailhog start
+sudo service mailhog stop
+```
