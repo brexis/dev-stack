@@ -18,7 +18,7 @@ sudo apt install -y php7.0  php7.0-curl php7.0-json php7.0-cgi php7.0-fpm autoco
   build-essential libmhash-dev libmhash2 libxslt1-dev libpng-dev libpq-dev \
   libcairo2-dev libjpeg-dev libgif-dev libxpm-dev python python-pip python-dev \
   python-software-properties apt-transport-https make g++ curl \
-  apache2-utils git supervisor redis-server
+  apache2-utils git supervisor redis-server unzip
 
 # Install Rvm
 echo "Installing rvm"
