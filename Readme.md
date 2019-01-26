@@ -1,5 +1,5 @@
 ## Requirements
-See [Requirements](Requirements) file.
+See [Requirements.md](Requirements) file.
 
 ## Intallation
 With Curl
@@ -75,4 +75,12 @@ sudo apt-get install mate-core mate-desktop-environment mate-notification-daemon
 
 echo mate-session> ~/.xsession
 sudo cp ~/.xsession /etc/skel
+```
+
+### Add aliases
+
+Update the aliases file at `$HOME/.stack/config/aliases`. Add yur aliases and run:
+
+```
+stack configure
 ```
