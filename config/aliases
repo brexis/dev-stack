@@ -1,0 +1,28 @@
+alias phpspec='vendor/bin/phpspec'
+alias phpunit='vendor/bin/phpunit'
+
+alias nrd="npm run dev"
+alias nrw="npm run watch"
+alias nrwp="npm run watch-poll"
+alias nrh="npm run hot"
+alias nrp="npm run production"
+alias nrb="npm run build"
+
+alias yrd="yarn run dev"
+alias yrw="yarn run watch"
+alias yrwp="yarn run watch-poll"
+alias yrh="yarn run hot"
+alias yrp="yarn run production"
+alias yrb="yarn run build"
+
+function artisan() {
+    php artisan "$@"
+}
+
+function php71() {
+    $HOME/.phpbrew/php/php-7.1.25/bin/php
+}
+
+function php72() {
+    $HOME/.phpbrew/php/php-7.2.13/bin/php
+}
