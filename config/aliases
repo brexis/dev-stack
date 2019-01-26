@@ -1,5 +1,6 @@
 alias phpspec='vendor/bin/phpspec'
 alias phpunit='vendor/bin/phpunit'
+alias art=artisan
 
 alias nrd="npm run dev"
 alias nrw="npm run watch"
