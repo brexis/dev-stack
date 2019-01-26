@@ -13,8 +13,8 @@ postgresql:
 elasticsearch: 6.5.4
 
 minio:
-  access_key: homestead
-  secret_key: secret123
+  access_key: AKIAIOSFODNN7EXAMPLE
+  secret_key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
 cloud9:
   username: homestead

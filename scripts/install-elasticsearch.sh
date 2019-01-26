@@ -33,9 +33,9 @@ sudo dpkg -i elasticsearch-"$VERSION".deb
 
 sudo update-rc.d elasticsearch defaults 95 10
 
-# Update configuration to use 'homestead' as the cluster
+# Update configuration to use 'MyCluster' as the cluster
 
-sudo sed -i "s/#cluster.name: my-application/cluster.name: homestead/" /etc/elasticsearch/elasticsearch.yml
+sudo sed -i "s/# cluster.name: my-application/cluster.name: MyCluster/" /etc/elasticsearch/elasticsearch.yml
 
 # Enable Start Elasticsearch
 

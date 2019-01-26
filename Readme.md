@@ -26,12 +26,12 @@ Update the settings file
 nano ~/.stack/config/settings.yml
 ```
 
-## Setup environments
+## Setup environment
 ```
 stack setup
 ```
 
-## Confifures
+## Configuration
 ```
 stack configure
 ```
@@ -64,3 +64,15 @@ $ /opt/google/chrome-remote-desktop/start-host --code="MY_AUTH_CODE" \
     --redirect-url=https://talkgadget.google.com/talkgadget/blank \
     --name="MY_REMOTE_NAME"
 * Pick a PIN and use it to connect later.
+
+### Install Mate
+[https://jerrygamblin.com/2016/10/19/ubuntu-remote-desktop-on-digital-ocean/](https://jerrygamblin.com/2016/10/19/ubuntu-remote-desktop-on-digital-ocean/)
+
+```
+sudo apt-get update && sudo apt-get dist-upgrade -y
+sudo apt-get install --no-install-recommends ubuntu-mate-core ubuntu-mate-desktop -y
+sudo apt-get install mate-core mate-desktop-environment mate-notification-daemon -y
+
+echo mate-session> ~/.xsession
+sudo cp ~/.xsession /etc/skel
+```
