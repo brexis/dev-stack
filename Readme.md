@@ -1,5 +1,5 @@
 ## Requirements
-See [Requirements.md](Requirements) file.
+See [Requirements](Requirements.md) file.
 
 ## Intallation
 With Curl
