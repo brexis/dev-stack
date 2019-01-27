@@ -58,10 +58,7 @@ module Stack
       end
 
       # Restart services
-      run_inline('sudo service nginx restart')
-      config['php'].each do |version|
-        run_inline("phpbrew use #{version}; phpbrew fpm restart")
-      end
+      run('restart-nginx-services.sh')
 
       # Install aliases
       run('install-aliases.sh')
