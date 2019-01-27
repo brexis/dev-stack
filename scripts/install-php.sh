@@ -31,6 +31,3 @@ sed -i "s/group = nobody/group = $USER/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d
 sed -i "s/;listen\.owner.*/listen.owner = $USER/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf
 sed -i "s/;listen\.group.*/listen.group = $USER/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf
-
-phpbrew fpm stop
-phpbrew fpm start

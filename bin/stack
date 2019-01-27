@@ -57,15 +57,17 @@ module Stack
         run('serve-laravel.sh', host, dir, php)
       end
 
+      # Restart services
+      run_inline('sudo service nginx restart')
+      config['php'].each do |version|
+        run_inline("phpbrew use #{version}; phpbrew fpm restart")
+      end
+
       # Install aliases
       run('install-aliases.sh')
     end
 
     def script_path(script)
-      unless ENV.key?('STACK_HOME')
-        raise 'No STACK_HOME provided. Plase'
-      end
-
       "#{ENV['STACK_HOME']}/scripts/#{script}"
     end
 
@@ -73,15 +75,26 @@ module Stack
       path = script_path(script)
       cmd.run(path, *args)
     end
+
+    def run_inline(script)
+      cmd.run(script)
+    end
   end
 end
 
 def read_config
-  path = File.expand_path('../../config/settings.yml', __FILE__)
+  path = File.expand_path('config/settings.yml', ENV['STACK_HOME'])
   YAML.load_file(path)
+end
+
+def check_home_path
+  unless ENV.key?('STACK_HOME')
+    raise 'No STACK_HOME provided. Plase'
+  end
 end
 
 args = ARGV
 action = args.delete_at(0)
+check_home_path
 
 Stack.send(action.to_sym, read_config, *args)
