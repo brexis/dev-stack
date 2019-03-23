@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-docker pull drone/drone:1.0.0-rc.1
-docker pull drone/agent:1.0.0-rc.1
+sudo docker pull drone/drone:1.0.0-rc.1
+sudo docker pull drone/agent:1.0.0-rc.1
 sudo mkdir /etc/drone
 sudo touch /etc/drone/server.env
 sudo touch /etc/drone/agent.env
