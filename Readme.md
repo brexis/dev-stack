@@ -83,7 +83,7 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 ### Chrome remote desktop
 
-## Install
+#### Install
 ```
 wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
 sudo dpkg -i chrome-remote-desktop_current_amd64.deb
