@@ -14,6 +14,8 @@ module Stack
     def setup(config)
       run('install-mysql.sh', config['mysql']['user'], config['mysql']['password'])
       run('install-postgresql.sh', config['postgresql']['user'], config['postgresql']['password'])
+      run('install-docker.sh')
+      run('install-drone.sh')
       run('install-phpbrew.sh')
       run('install-node.sh')
       run('install-nginx.sh')
