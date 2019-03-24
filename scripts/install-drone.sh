@@ -11,9 +11,9 @@ version: '3'
 
 services:
   drone-server:
-    image: drone/drone:0.7
+    image: drone/drone:1.0.0-rc.1
     ports:
-      - 127.0.0.1:80:9000
+      - 9000:80
     volumes:
       - /var/lib/drone:/var/lib/drone
     restart: always
@@ -21,8 +21,7 @@ services:
       - /etc/drone/server.env
 
   drone-agent:
-    image: drone/drone:0.7
-    command: agent
+    image: drone/drone:1.0.0-rc.1
     depends_on:
       - drone-server
     volumes:
@@ -49,6 +48,3 @@ WantedBy=multi-user.target
 "
 
 echo "$service" | sudo tee /etc/systemd/system/drone.service
-
-sudo systemctl stop drone
-sudo systemctl start drone
