@@ -12,7 +12,7 @@ then
 fi
 
 echo "Installing Php $1"
-phpbrew install $1 +default +dbs +fpm
+phpbrew install --mirror https://www.php.net $1 +default +dbs +fpm
 phpbrew use $1
 phpbrew ext install gd -- \
  --enable-gd-native-ttf \
