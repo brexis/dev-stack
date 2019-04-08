@@ -54,9 +54,10 @@ module Stack
         host = site['map']
         dir = site['to']
         php = site.fetch('php') { '' }
+        user = site.fetch('user') { '' }
 
         run('create-certificate.sh', host)
-        run('serve-laravel.sh', host, dir, php)
+        run('serve-laravel.sh', host, dir, php, user)
       end
 
       # Restart services
