@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 PHP_VERSION=${3:-7.2.13}
+CURRENT_USER=${4:-$USER}
+USER_HOME=~$CURRENT_USER
 
 block="server {
     listen 80;
@@ -20,7 +22,7 @@ block="server {
     client_max_body_size 100m;
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:$HOME/.phpbrew/php/php-$PHP_VERSION/var/run/php-fpm.sock;
+        fastcgi_pass unix:$USER_HOME/.phpbrew/php/php-$PHP_VERSION/var/run/php-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
