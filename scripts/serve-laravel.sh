@@ -2,7 +2,7 @@
 
 PHP_VERSION=${3:-7.2.13}
 CURRENT_USER=${4:-$USER}
-USER_HOME=~$CURRENT_USER
+USER_HOME="$(getent passwd "$CURRENT_USER" | cut -d : -f 6)"
 
 block="server {
     listen 80;
