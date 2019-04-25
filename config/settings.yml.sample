@@ -20,6 +20,10 @@ cloud9:
   username: homestead
   password: secret
 
+coder:
+  username: homestead
+  password: secret
+
 php:
   - 7.2.13
 
