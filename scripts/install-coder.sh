@@ -15,7 +15,7 @@ wget https://github.com/codercom/code-server/releases/download/$VERSION/code-ser
 tar -xvzf code-server$VERSION-linux-x64.tar.gz
 cd code-server$VERSION-linux-x64
 sudo chmod +x code-server
-mv code-server /usr/local/bin/
+sudo mv code-server /usr/local/bin/
 cd $HOME
 rm code-server$VERSION-linux-x64.tar.gz
 rm -R code-server$VERSION-linux-x64
