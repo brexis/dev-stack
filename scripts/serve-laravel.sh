@@ -42,7 +42,7 @@ block="server {
         deny all;
     }
 
-    include $CONF_DIR;
+    include $CONF_DIR/*.conf;
 
     ssl_certificate     /etc/nginx/ssl/$1.crt;
     ssl_certificate_key /etc/nginx/ssl/$1.key;
