@@ -1,3 +1,4 @@
 /config/settings.yml
 /Gemfile.lock
 /MYSQL_ROOT_PASSWORD
+/donfig/nginx.conf.d
