@@ -3,7 +3,7 @@
 PHP_VERSION=${3:-7.2.13}
 CURRENT_USER=${4:-$USER}
 USER_HOME="$(getent passwd "$CURRENT_USER" | cut -d : -f 6)"
-CONF_DIR="\$STACK_DIR/config/nginx.conf.d/$1"
+CONF_DIR="$STACK_DIR/config/nginx.conf.d/$1"
 
 if [ ! -d $CONF_DIR ]; then
   sudo mkdir -p $CONF_DIR
