@@ -3,6 +3,11 @@
 PHP_VERSION=${3:-7.2.13}
 CURRENT_USER=${4:-$USER}
 USER_HOME="$(getent passwd "$CURRENT_USER" | cut -d : -f 6)"
+CONF_DIR="\$STACK_DIR/config/nginx.conf.d/$1"
+
+if [ ! -d $CONF_DIR ]; then
+  mkdir -p $CONF_DIR
+fi
 
 block="server {
     listen 80;
@@ -36,6 +41,9 @@ block="server {
     location ~ /\.ht {
         deny all;
     }
+    
+    include $CONF_DIR;
+    
     ssl_certificate     /etc/nginx/ssl/$1.crt;
     ssl_certificate_key /etc/nginx/ssl/$1.key;
 }
