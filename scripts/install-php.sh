@@ -25,9 +25,16 @@ phpbrew ext install gd -- \
  --with-xpm-dir=/usr
 
 echo "Configure PHP $1 fpm"
-sed -i "s/user = nobody/user = $USER/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf
-sed -i "s/group = nobody/group = $USER/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf
+CONF_FILE = "$HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf"
 
-sed -i "s/;listen\.owner.*/listen.owner = $USER/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf
-sed -i "s/;listen\.group.*/listen.group = $USER/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf
-sed -i "s/;listen\.mode.*/listen.mode = 0666/" $HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf
+if [ -d $CONF_FILE ]
+then
+  CONF_FILE = "$HOME/.phpbrew/php/php-$1/etc/php-fpm.conf"
+fi
+
+sed -i "s/user = nobody/user = $USER/" $CONF_FILE
+sed -i "s/group = nobody/group = $USER/" $CONF_FILE
+
+sed -i "s/;listen\.owner.*/listen.owner = $USER/" $CONF_FILE
+sed -i "s/;listen\.group.*/listen.group = $USER/" $CONF_FILE
+sed -i "s/;listen\.mode.*/listen.mode = 0666/" $CONF_FILE
