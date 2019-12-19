@@ -27,7 +27,7 @@ phpbrew ext install gd -- \
 echo "Configure PHP $1 fpm"
 CONF_FILE="$HOME/.phpbrew/php/php-$1/etc/php-fpm.d/www.conf"
 
-if [ -d $CONF_FILE ]
+if [ ! -f "$CONF_FILE" ]
 then
   CONF_FILE="$HOME/.phpbrew/php/php-$1/etc/php-fpm.conf"
 fi
