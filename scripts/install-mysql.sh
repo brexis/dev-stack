@@ -23,8 +23,8 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/data-dir select ''"
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $ROOT_PASSWORD"
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $ROOT_PASSWORD"
 
-sudo apt update
-sudo apt install -y mysql-server mysql-client libmysqlclient-dev libmysqld-dev
+sudo apt-get update
+sudo apt-get install -y mysql-server mysql-client libmysqlclient-dev libmysqld-dev
 sudo service mysql restart
 
 mysql --user="root" --password="$ROOT_PASSWORD" -e "CREATE USER '$USERNAME'@'localhost' IDENTIFIED BY '$PASSWORD';"

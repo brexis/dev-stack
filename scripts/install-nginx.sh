@@ -5,7 +5,7 @@ USER=$(whoami)
 phpbrew init
 [[ -e "$HOME/.phpbrew/bashrc" ]] && source "$HOME/.phpbrew/bashrc"
 
-sudo apt install -y nginx
+sudo apt-get install -y nginx
 sudo rm /etc/nginx/sites-enabled/default
 sudo rm /etc/nginx/sites-available/default
 
