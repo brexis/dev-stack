@@ -12,12 +12,12 @@ git clone https://github.com/brexis/dev-stack.git $STACK_HOME
 echo "Installing dependencies"
 
 sudo apt update
-sudo apt install -y php7.0  php7.0-curl php7.0-json php7.0-cgi php7.0-fpm autoconf \
+sudo apt install -y php7.4  php7.4-curl php7.4-json php7.4-cgi php7.4-fpm autoconf \
   automake gnupg2 libxml2-dev libcurl4-openssl-dev libssl-dev openssl gettext \
   libicu-dev libmcrypt-dev libmcrypt4 libbz2-dev libreadline-dev \
   build-essential libmhash-dev libmhash2 libxslt1-dev libpng-dev libpq-dev \
   libcairo2-dev libjpeg-dev libgif-dev libxpm-dev python python-pip python-dev \
-  python-software-properties apt-transport-https make g++ curl \
+  software-properties-common apt-transport-https make g++ curl \
   apache2-utils git supervisor redis-server unzip
 
 # Install Rvm
