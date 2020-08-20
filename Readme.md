@@ -20,6 +20,11 @@ export STACK_HOME=$HOME/.stack
 export PATH=$STACK_HOME/bin:$PATH
 ```
 
+Then run
+```
+source ~/.bashrc
+```
+
 ## Configuration
 Update the settings file
 ```
