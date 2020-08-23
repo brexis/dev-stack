@@ -24,6 +24,7 @@ module Stack
     end
 
     def setup_user(_)
+      run('install-ruby.sh')
       run('install-phpbrew.sh')
       run('install-node.sh')
       run('install-coder.sh')
