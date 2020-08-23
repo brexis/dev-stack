@@ -21,14 +21,8 @@ sudo apt install -y php php-curl php-json php-cgi php-bz2 php-fpm autoconf \
   apache2-utils git supervisor redis-server unzip default-jre default-jdk
 
 # Install Rvm
-echo "Installing rvm"
-gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+bash "$STACK_HOME/scripts/install-ruby.sh"
 
-\curl -sSL https://get.rvm.io | bash -s stable --rails
-
-echo -e "source $HOME/.rvm/scripts/rvm" | tee -a "$HOME/.bashrc"
-
-source $HOME/.rvm/scripts/rvm
 cd $STACK_HOME
 gem install bundler
 bundle install
