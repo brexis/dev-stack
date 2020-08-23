@@ -21,7 +21,7 @@ fi
 curl -fsSL https://code-server.dev/install.sh | sh
 
 block="
-[program:coder]
+[program:coder-$USER]
 command=/usr/bin/code-server --config $HOME/.config/code-server/config.yaml $HOME/code
 user=$USER
 autostart=true
