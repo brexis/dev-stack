@@ -8,6 +8,11 @@ fi
 
 $FILE="/etc/supervisor/conf.d/coder.conf"
 
+if [ ! -f "$FILE" ]
+then
+  touch "$FILE"
+fi
+
 if grep -q "user=$USER" "$FILE"
 then
   return
