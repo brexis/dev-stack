@@ -18,7 +18,7 @@ sudo apt install -y php php-curl php-json php-cgi php-bz2 php-fpm autoconf \
   build-essential libmhash-dev libmhash2 libxslt1-dev libpng-dev libpq-dev \
   libcairo2-dev libjpeg-dev libgif-dev libxpm-dev python python-pip python-dev \
   software-properties-common apt-transport-https make g++ curl \
-  apache2-utils git supervisor redis-server unzip
+  apache2-utils git supervisor redis-server unzip default-jre default-jdk
 
 # Install Rvm
 echo "Installing rvm"
