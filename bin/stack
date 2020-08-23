@@ -16,15 +16,17 @@ module Stack
       run('install-postgresql.sh', config['postgresql']['user'], config['postgresql']['password'])
       run('install-docker.sh')
       run('install-drone.sh')
-      run('install-phpbrew.sh')
-      run('install-node.sh')
       run('install-nginx.sh')
       run('install-elasticsearch.sh', config['elasticsearch'])
       run('install-minio.sh', config['minio']['access_key'], config['minio']['secret_key'])
-      run('install-cloud9.sh', config['cloud9']['username'], config['cloud9']['password'])
-      run('install-coder.sh', config['coder']['username'], config['coder']['password'])
       run('install-mailhog.sh')
       run('install-heroku-cli.sh')
+    end
+
+    def setup_user
+      run('install-phpbrew.sh')
+      run('install-node.sh')
+      run('install-coder.sh')
       run('install-oh-my-zsh.sh')
     end
 
