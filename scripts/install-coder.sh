@@ -10,7 +10,7 @@ $FILE="/etc/supervisor/conf.d/coder.conf"
 
 if [ ! -f "$FILE" ]
 then
-  touch "$FILE"
+  sudo touch "$FILE"
 fi
 
 if grep -q "user=$USER" "$FILE"
