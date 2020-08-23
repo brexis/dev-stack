@@ -23,7 +23,7 @@ module Stack
       run('install-heroku-cli.sh')
     end
 
-    def setup_user
+    def setup_user(_)
       run('install-phpbrew.sh')
       run('install-node.sh')
       run('install-coder.sh')
